@@ -1,0 +1,52 @@
+# Blender 4.0.2 MTL File: 'None'
+# www.blender.org
+
+newmtl unnamed.0
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/torso.PNG
+map_d C:/torso.PNG
+
+newmtl unnamed.1
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/africa.PNG
+map_d C:/africa.PNG
+
+newmtl unnamed.2
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/face.PNG
+map_d C:/face.PNG
+
+newmtl unnamed.3
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/legs.PNG
+map_d C:/legs.PNG
+
+newmtl unnamed.4
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/convheatblk.PNG
+map_d C:/convheatblk.PNG
