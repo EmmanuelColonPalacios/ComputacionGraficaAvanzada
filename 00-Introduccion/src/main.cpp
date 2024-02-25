@@ -867,7 +867,7 @@ void applicationLoop() {
 		boxLandingPad.render();
 		shaderMulLighting.setVectorFloat2("scaleUV", glm::value_ptr(glm::vec2(1.0, 1.0)));
 		glBindTexture(GL_TEXTURE_2D, 0);
-
+		
 		/*******************************************
 		 * Custom objects obj
 		 *******************************************/
