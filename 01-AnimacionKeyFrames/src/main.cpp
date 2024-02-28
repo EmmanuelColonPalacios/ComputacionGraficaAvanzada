@@ -637,6 +637,8 @@ void reshapeCallback(GLFWwindow *Window, int widthRes, int heightRes) {
 	glViewport(0, 0, widthRes, heightRes);
 }
 
+int state2 = 0;
+
 void keyCallback(GLFWwindow *window, int key, int scancode, int action,
 		int mode) {
 	if (action == GLFW_PRESS) {
@@ -796,53 +798,53 @@ bool processInput(bool continueApplication) {
 			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
 		rotBuzzHead -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
 		rotBuzzHip += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
 		rotBuzzHip -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
 		rotBuzzTorso += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
 		rotBuzzTorso -= 0.02;
 
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
 		rotBuzzLeftArm += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
 		rotBuzzLeftArm -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
 		rotBuzzLeftCalf += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
 		rotBuzzLeftCalf -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_9) == GLFW_PRESS)
 		rotBuzzLeftFoot += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_9) == GLFW_PRESS)
 		rotBuzzLeftFoot -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
 		rotBuzzLeftForearm += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
 		rotBuzzLeftForearm -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
 		rotBuzzLeftHand += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
 		rotBuzzLeftHand -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_7) == GLFW_PRESS)
 		rotLeftThigh += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_7) == GLFW_PRESS)
 		rotLeftThigh -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
 			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
@@ -858,40 +860,40 @@ bool processInput(bool continueApplication) {
 		rotLeftWing2 -= 0.02;
 
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
 		rotBuzzRightArm += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
 		rotBuzzRightArm -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
 		rotBuzzRightCalf += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
 		rotBuzzRightCalf -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		rotBuzzRightFoot += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		rotBuzzRightFoot -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 		rotBuzzRightForearm += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 		rotBuzzRightForearm -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
 		rotBuzzRightHand += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
 		rotBuzzRightHand -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
 		rotRightThigh += 0.02;
 	else if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS &&
-			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
 		rotRightThigh -= 0.02;
 	if (modelSelected == 3 && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE &&
 			glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
@@ -925,7 +927,7 @@ void applicationLoop() {
 
 	modelMatrixEclipse = glm::translate(modelMatrixEclipse, glm::vec3(27.5, 0, 30.0));
 	modelMatrixEclipse = glm::rotate(modelMatrixEclipse, glm::radians(180.0f), glm::vec3(0, 1, 0));
-	int state = 0, state2 = 0;
+	int state = 0;
 	float advanceCount = 0.0, advanceCount2 = 0.0;
 	float rotCount = 0.0, rotCount2 = 0.0;
 	float rotWheelsX = 0.0, rotWheelsX2 = 0.0;
@@ -1325,11 +1327,13 @@ void applicationLoop() {
 		modelBuzzRightForearm.render(modelMatrixRightForeArm);
 
 		glm::mat4 modelMatrixRightHand = glm::mat4(modelMatrixRightForeArm);
-		modelMatrixRightHand = glm::translate(modelMatrixRightHand, glm::vec3(-0.415801, 0.599048, -0.071594));
+		modelMatrixRightHand = glm::translate(modelMatrixRightHand, glm::vec3(-0.407486, -0.068095, 0.586964)); 
+		// Pivote mal hecho a propósito. =) Invertir Y y Z para pivote correcto
 		modelMatrixRightHand = glm::rotate(modelMatrixRightHand, glm::radians(-45.0f), glm::vec3(0, 1, 0));
 		modelMatrixRightHand = glm::rotate(modelMatrixRightHand, rotBuzzRightHand, glm::vec3(-1, 0, 0));
 		modelMatrixRightHand = glm::rotate(modelMatrixRightHand, glm::radians(45.0f), glm::vec3(0, 1, 0));
-		modelMatrixRightHand = glm::translate(modelMatrixRightHand, glm::vec3(0.415801, -0.599048, 0.071594));
+		modelMatrixRightHand = glm::translate(modelMatrixRightHand, glm::vec3(0.407486, 0.068095, -0.586964));
+		// Pivote mal hecho a propósito. =) Invertir Y y Z para pivote correcto
 		modelBuzzRightHand.render(modelMatrixRightHand);
 
 		// HIP de Buzz LightYear
@@ -1436,7 +1440,7 @@ void applicationLoop() {
 			numPasosDartJoints++;
 			if(interpolationDartJoints > 1.0){
 				// Llegamos al punto objetivo
-				interpolationDartJoints = 0.0;
+				interpolationDartJoints = 0;
 				numPasosDartJoints = 0;
 				indexFrameDartJoints = indexFrameDartJointsNext;
 				indexFrameDartJointsNext++;
