@@ -72,6 +72,8 @@ Model modelLamboFrontLeftWheel;
 Model modelLamboFrontRightWheel;
 Model modelLamboRearLeftWheel;
 Model modelLamboRearRightWheel;
+Model modelLamboFrontWheels;
+Model modelLamboRearWheels;
 // Dart lego
 Model modelDartLegoBody;
 Model modelDartLegoHead;
@@ -317,7 +319,10 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelLamboRearLeftWheel.setShader(&shaderMulLighting);
 	modelLamboRearRightWheel.loadModel("../models/Lamborginhi_Aventador_OBJ/Lamborghini_Aventador_rear_right_wheel.obj");
 	modelLamboRearRightWheel.setShader(&shaderMulLighting);
-
+	modelLamboFrontWheels.loadModel("../models/Lamborginhi_Aventador_OBJ/Lambo_FrontWheels.obj");
+	modelLamboFrontWheels.setShader(&shaderMulLighting);
+	modelLamboRearWheels.loadModel("../models/Lamborginhi_Aventador_OBJ/Lambo_RearWheels.obj");
+	modelLamboRearWheels.setShader(&shaderMulLighting);
 
 	// Dart Lego
 	modelDartLegoBody.loadModel("../models/LegoDart/LeoDart_body.obj");
@@ -605,6 +610,8 @@ void destroy() {
 	modelLambo.destroy();
 	modelLamboFrontLeftWheel.destroy();
 	modelLamboFrontRightWheel.destroy();
+	modelLamboFrontWheels.destroy();
+	modelLamboRearWheels.destroy();
 	modelLamboLeftDor.destroy();
 	modelLamboRearLeftWheel.destroy();
 	modelLamboRearRightWheel.destroy();
@@ -1146,7 +1153,7 @@ void applicationLoop() {
 		modelEclipseChasis.render(modelMatrixEclipseChasis);
 
 		glm::mat4 modelMatrixFrontalWheels = glm::mat4(modelMatrixEclipseChasis);
-		modelMatrixFrontalWheels = glm::translate(modelMatrixFrontalWheels, glm::vec3(0.0, 1.05813, 4.11483 ));
+		modelMatrixFrontalWheels = glm::translate(modelMatrixFrontalWheels, glm::vec3(0.0, 1.05813, 4.11483));
 		modelMatrixFrontalWheels = glm::rotate(modelMatrixFrontalWheels, rotWheelsY, glm::vec3(0, 1, 0));
 		modelMatrixFrontalWheels = glm::rotate(modelMatrixFrontalWheels, rotWheelsX, glm::vec3(1, 0, 0));
 		modelMatrixFrontalWheels = glm::translate(modelMatrixFrontalWheels, glm::vec3(0.0, -1.05813, -4.11483));
@@ -1187,25 +1194,25 @@ void applicationLoop() {
 		modelLamboLeftDor.render(modelMatrixLamboLeftDor);
 		modelLamboRightDor.render(modelMatrixLamboChasis);
 		
-		modelLamboFrontLeftWheel.render(modelMatrixLamboChasis);
-		modelLamboFrontRightWheel.render(modelMatrixLamboChasis);
-		modelLamboRearLeftWheel.render(modelMatrixLamboChasis);
-		modelLamboRearRightWheel.render(modelMatrixLamboChasis);
+		//modelLamboFrontLeftWheel.render(modelMatrixLamboChasis);
+		//modelLamboFrontRightWheel.render(modelMatrixLamboChasis);
+		//modelLamboRearLeftWheel.render(modelMatrixLamboChasis);
+		//modelLamboRearRightWheel.render(modelMatrixLamboChasis);
 
-		/*
-		glm::mat4 modelMatrixFrontalWheels = glm::mat4(modelMatrixEclipseChasis);
-		modelMatrixFrontalWheels = glm::translate(modelMatrixFrontalWheels, glm::vec3(0.0, 1.05813, 4.11483 ));
-		modelMatrixFrontalWheels = glm::rotate(modelMatrixFrontalWheels, rotWheelsY, glm::vec3(0, 1, 0));
-		modelMatrixFrontalWheels = glm::rotate(modelMatrixFrontalWheels, rotWheelsX, glm::vec3(1, 0, 0));
-		modelMatrixFrontalWheels = glm::translate(modelMatrixFrontalWheels, glm::vec3(0.0, -1.05813, -4.11483));
-		modelEclipseFrontalWheels.render(modelMatrixFrontalWheels);
+		
+		glm::mat4 modelMatrixFrontWheelsLambo = glm::mat4(modelMatrixLamboChasis);
+		modelMatrixFrontWheelsLambo = glm::translate(modelMatrixFrontWheelsLambo, glm::vec3(0.030891, 0.373731, 0.486758));
+		modelMatrixFrontWheelsLambo = glm::rotate(modelMatrixFrontWheelsLambo, rotWheelsY2, glm::vec3(0, 1, 0));
+		modelMatrixFrontWheelsLambo = glm::rotate(modelMatrixFrontWheelsLambo, rotWheelsX2, glm::vec3(1, 0, 0));
+		modelMatrixFrontWheelsLambo = glm::translate(modelMatrixFrontWheelsLambo, glm::vec3(-0.030891, -0.373731, -0.486758));
+		modelLamboFrontWheels.render(modelMatrixFrontWheelsLambo);
 
-		glm::mat4 modelMatrixRearWheels = glm::mat4(modelMatrixEclipseChasis);
-		modelMatrixRearWheels = glm::translate(modelMatrixRearWheels, glm::vec3(0.0, 1.05813, -4.35157 ));
-		modelMatrixRearWheels = glm::rotate(modelMatrixRearWheels, rotWheelsX, glm::vec3(1, 0, 0));
-		modelMatrixRearWheels = glm::translate(modelMatrixRearWheels, glm::vec3(0.0, -1.05813, 4.35157));
-		modelEclipseRearWheels.render(modelMatrixRearWheels);
-		*/
+		glm::mat4 modelMatrixRearWheelsLambo = glm::mat4(modelMatrixLamboChasis);
+		modelMatrixRearWheelsLambo = glm::translate(modelMatrixRearWheelsLambo, glm::vec3(0.030891 , 0.373731, 3.48676));
+		modelMatrixRearWheelsLambo = glm::rotate(modelMatrixRearWheelsLambo, rotWheelsX2, glm::vec3(1, 0, 0));
+		modelMatrixRearWheelsLambo = glm::translate(modelMatrixRearWheelsLambo, glm::vec3(-0.030891 , -0.373731, -3.48676));
+		modelLamboRearWheels.render(modelMatrixRearWheelsLambo);
+		
 
 
 		// Se regresa el cull faces IMPORTANTE para las puertas
@@ -1464,21 +1471,19 @@ void applicationLoop() {
 				appendFrame(myfile, matrixDart);
 			}
 		}
-		else if(!record && keyFramesDart.size() > 0){
+		else if(keyFramesDart.size() > 0){
 			interpolationDart = numPasosDart / (float) maxNumPasosDart;
 			numPasosDart++;
 			if(interpolationDart > 1.0){
+				numPasosDart = 0;
 				interpolationDart = 0;
 				indexFrameDart = indexFrameDartNext;
 				indexFrameDartNext++;
 			}
 			if(indexFrameDartNext > keyFramesDart.size() - 1)
 				indexFrameDartNext = 0;
-				modelMatrixDart = interpolate(keyFramesDart, indexFrameDart, indexFrameDartNext, 
-				0, interpolationDart); // chequea esto memi
-	
+			modelMatrixDart = interpolate(keyFramesDart, indexFrameDart, indexFrameDartNext, 0, interpolationDart);
 		}
-
 
 		// Buzz KeyFrames Guardado
 		if(record && modelSelected == 1){
