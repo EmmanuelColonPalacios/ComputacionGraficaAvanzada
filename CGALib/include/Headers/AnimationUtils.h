@@ -161,7 +161,7 @@ std::vector<std::vector<float>> getKeyRotFrames(std::string fileName) {
 
 glm::mat4 interpolate(std::vector<std::vector<glm::mat4>> keyFrames, int index,
 		int indexNext, int jointID, float interpolation){
-	glm::quat firstQuat;
+	glm::quat firstQuat; // Cuaterniones <----------------------------
 	glm::quat secondQuat;
 	glm::quat finalQuat;
 	glm::mat4 interpoltaedMatrix;
