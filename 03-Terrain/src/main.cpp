@@ -100,9 +100,11 @@ Model cowboyModelAnimate;
 Model guardianModelAnimate;
 // Cybog
 Model cyborgModelAnimate;
+// Sekiro
+Model sekiroModelAnimate;
 
 // Terreno
-Terrain terreno(-1, -1, 50, 32, "../Textures/heightmap2.png");
+Terrain terreno(-1, -1, 50, 32, "../Textures/heightmap3.png");
 
 GLuint textureCespedID, textureWallID, textureWindowID, textureHighwayID, textureLandingPadID;
 GLuint skyboxTextureID;
@@ -115,12 +117,12 @@ GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
 GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
 GL_TEXTURE_CUBE_MAP_NEGATIVE_Z };
 
-std::string fileNames[6] = { "../Textures/mp_bloodvalley/blood-valley_ft.tga",
-		"../Textures/mp_bloodvalley/blood-valley_bk.tga",
-		"../Textures/mp_bloodvalley/blood-valley_up.tga",
-		"../Textures/mp_bloodvalley/blood-valley_dn.tga",
-		"../Textures/mp_bloodvalley/blood-valley_rt.tga",
-		"../Textures/mp_bloodvalley/blood-valley_lf.tga" };
+std::string fileNames[6] = { "../Textures/texturaPrac2/cielo_ft.tga",
+		"../Textures/texturaPrac2/cielo_bk.tga",
+		"../Textures/texturaPrac2/cielo_up.tga",
+		"../Textures/texturaPrac2/cielo_dn.tga",
+		"../Textures/texturaPrac2/cielo_rt.tga",
+		"../Textures/texturaPrac2/cielo_lf.tga" };
 
 bool exitApp = false;
 int lastMousePosX, offsetX = 0;
@@ -138,8 +140,9 @@ glm::mat4 modelMatrixMayow = glm::mat4(1.0f);
 glm::mat4 modelMatrixCowboy = glm::mat4(1.0f);
 glm::mat4 modelMatrixGuardian = glm::mat4(1.0f);
 glm::mat4 modelMatrixCyborg = glm::mat4(1.0f);
+glm::mat4 modelMatrixSekiro = glm::mat4(1.0f);
 
-int animationMayowIndex = 1;
+int animationMayowIndex = 1, animationSekiroIndex = 1;
 float rotDartHead = 0.0, rotDartLeftArm = 0.0, rotDartLeftHand = 0.0, rotDartRightArm = 0.0, rotDartRightHand = 0.0, rotDartLeftLeg = 0.0, rotDartRightLeg = 0.0;
 float rotBuzzHead = 0.0, rotBuzzLeftarm = 0.0, rotBuzzLeftForeArm = 0.0, rotBuzzLeftHand = 0.0;
 int modelSelected = 0;
@@ -367,10 +370,14 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	cyborgModelAnimate.loadModel("../models/cyborg/cyborg.fbx");
 	cyborgModelAnimate.setShader(&shaderMulLighting);
 
+	// Sekiro
+	sekiroModelAnimate.loadModel("../models/Sekiro/Raiden Msg5.fbx");
+	sekiroModelAnimate.setShader(&shaderMulLighting);
+
 	// Terreno
 	terreno.init();
 	terreno.setShader(&shaderMulLighting);
-
+	
 	camera->setPosition(glm::vec3(0.0, 3.0, 4.0));
 	
 	// Carga de texturas para el skybox
@@ -583,6 +590,7 @@ void destroy() {
 	modelBuzzLeftHand.destroy();
 	modelBuzzTorso.destroy();
 	mayowModelAnimate.destroy();
+	sekiroModelAnimate.destroy();
 	cowboyModelAnimate.destroy();
 	guardianModelAnimate.destroy();
 	cyborgModelAnimate.destroy();
@@ -809,6 +817,23 @@ bool processInput(bool continueApplication) {
 		animationMayowIndex = 0;
 	}
 
+	// Controles de Raiden
+	if (modelSelected == 0 && glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
+		modelMatrixSekiro = glm::rotate(modelMatrixSekiro, 0.02f, glm::vec3(0, 1, 0));
+		animationSekiroIndex = 0;
+	} else if (modelSelected == 0 && glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS){
+		modelMatrixSekiro = glm::rotate(modelMatrixSekiro, -0.02f, glm::vec3(0, 1, 0));
+		animationSekiroIndex = 0;
+	}
+	if (modelSelected == 0 && glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
+		modelMatrixSekiro = glm::translate(modelMatrixSekiro, glm::vec3(0.0, 0.0, 0.02));
+		animationSekiroIndex = 0;
+	}
+	else if (modelSelected == 0 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
+		modelMatrixSekiro = glm::translate(modelMatrixSekiro, glm::vec3(0.0, 0.0, -0.02));
+		animationSekiroIndex = 0;
+	}
+
 	glfwPollEvents();
 	return continueApplication;
 }
@@ -847,6 +872,9 @@ void applicationLoop() {
 	modelMatrixGuardian = glm::rotate(modelMatrixGuardian, glm::radians(-90.0f), glm::vec3(1.0, 0.0, 0.0));
 
 	modelMatrixCyborg = glm::translate(modelMatrixCyborg, glm::vec3(5.0f, 0.05, 0.0f));
+
+	modelMatrixSekiro = glm::translate(modelMatrixSekiro, glm::vec3(10.0f, 0.05f, -5.0f));
+	modelMatrixSekiro = glm::rotate(modelMatrixSekiro, glm::radians(-90.0f), glm::vec3(0, 1, 0));
 
 	// Variables to interpolation key frames
 	fileName = "../animaciones/animation_dart_joints.txt";
@@ -1098,6 +1126,7 @@ void applicationLoop() {
 		modelMatrixMayow[0] = glm::vec4(ejex, 0.0);
 		modelMatrixMayow[1] = glm::vec4(normal, 0.0); // el eje Y es la "normal"
 		modelMatrixMayow[3][1] = terreno.getHeightTerrain(modelMatrixMayow[3][0], modelMatrixMayow[3][2]);
+		
 		glm::mat4 modelMatrixMayowBody = glm::mat4(modelMatrixMayow);
 		modelMatrixMayowBody = glm::scale(modelMatrixMayowBody, glm::vec3(0.021f));
 		mayowModelAnimate.setAnimationIndex(animationMayowIndex);
@@ -1116,6 +1145,20 @@ void applicationLoop() {
 		modelMatrixCyborgBody = glm::scale(modelMatrixCyborgBody, glm::vec3(0.009f));
 		cyborgModelAnimate.setAnimationIndex(1);
 		cyborgModelAnimate.render(modelMatrixCyborgBody);
+
+		glm::vec3 normal2 = terreno.getNormalTerrain(modelMatrixSekiro[3][0], modelMatrixSekiro[3][2]);
+		glm::vec3 ejex2 = glm::vec3(modelMatrixSekiro[0]);
+		glm::vec3 ejez2 = glm::normalize(glm::cross(ejex, normal2)); 
+		ejex = glm::normalize(glm::cross(normal, ejez2));
+		modelMatrixSekiro[0] = glm::vec4(ejex2, 0.0);
+		modelMatrixSekiro[1] = glm::vec4(normal2, 0.0); // el eje Y es la "normal"
+		modelMatrixSekiro[3][1] = terreno.getHeightTerrain(modelMatrixSekiro[3][0], modelMatrixSekiro[3][2]);
+
+		glm::mat4 modelMatrixSekiroBody = glm::mat4(modelMatrixSekiro);
+		modelMatrixSekiroBody = glm::scale(modelMatrixSekiroBody, glm::vec3(0.01, 0.01, 0.01));
+		sekiroModelAnimate.setAnimationIndex(animationSekiroIndex);
+		sekiroModelAnimate.render(modelMatrixSekiroBody);
+		animationSekiroIndex = 1; // Reposo
 
 		/*******************************************
 		 * Skybox
